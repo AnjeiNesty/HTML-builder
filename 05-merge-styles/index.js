@@ -12,8 +12,8 @@ const clearBundle = async (distPath) => {
 const createBundleCss = async () => {
   clearBundle(srcBundle);
   const files = await getStyles();
-  files.forEach((file) => {
-    readStyles(file);
+  files.forEach(async (file) => {
+    await readStyles(file);
   });
 }
 
@@ -29,7 +29,7 @@ const readStyles = async (file) => {
     fs.open(srcBundle, 'w', (err) => {
       if (err) throw err;
     });
-    fs.appendFile(srcBundle, data, (err) => {
+    fs.appendFile(srcBundle, `\n${data}`, (err) => {
       if (err) throw err;
     });
   });
